@@ -19,10 +19,19 @@ public class CruiseControl {
 	/*
 	 * Method to code
 	 */
-	public void setSpeedSet(int speedSet) {
-		
+	public void setSpeedSet(int speedSet) throws IncorrectSpeedException, SpeedSetAboveSpeedLimitException {
+		if (speedSet <= 0) {
+			throw new IncorrectSpeedException("Speed set cannot be negative");
+		}
+		if(speedLimit != null && speedSet > speedLimit) {
+			throw new SpeedSetAboveSpeedLimitException("Speed set cannot be higher than speed limit");
+		}
+		this.speedSet = speedSet;
 	}
 
+	/*
+	 * Other setters & getters
+	 */
 	/*
 	 * Other setters & getters
 	 */
